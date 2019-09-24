@@ -7,11 +7,16 @@ public class LibraryTest {
 
     Library library;
     Book book1;
+    Book book2;
+    Borrower borrower1;
 
     @Before
     public void before(){
         library = new Library(5);
         book1 = new Book("How to Java", "Ally M", "Computing");
+        book2 = new Book("How to Java2", "Ally M", "Computing");
+        borrower1 = new Borrower();
+
     }
 
     @Test
@@ -86,4 +91,48 @@ public class LibraryTest {
         //Then the capacity of books is 10
         assertEquals(5, library.getCapacity());
     }
+
+    @Test
+    public void canRemoveBook__bookExists(){
+        //Given there is a library
+        assertNotNull(library);
+        //AND there is a book
+        assertNotNull(book1);
+        //AND a book is added to the library
+        library.addBook(book1);
+        //When a book is removed
+        library.removeBook(book1);
+        //Then the library's stock count is 0
+        assertEquals(0, library.stockCount());
+    }
+
+    @Test
+    public void canRemoveBook__bookDoesNotExist(){
+        //Given there is a library
+        assertNotNull(library);
+        //AND a book is added to the library
+        library.addBook(book1);
+        //When a non-existent book is removed
+        library.removeBook(book2);
+        //Then the library's stock count is still 1
+        assertEquals(1, library.stockCount());
+    }
+
+//    @Test
+//    public void canCheckOutBook(){
+//        //Given there is a library
+//        assertNotNull(library);
+//        //AND there is a book
+//        assertNotNull(book1);
+//        //AND there is a borrower
+//        assertNotNull(borrower1);
+//        //AND the book is in the library stock
+//        library.addBook(book1);
+//        //When the library checks out the book to a borrower
+//        library.checkOut(book1, borrower1);
+//        //Then the library's stock is 0
+//        assertEquals(0, library.stockCount());
+//        //AND the borrower's borrowed List is 1
+//        assertEquals(1, borrower1.borrowedListSize());
+//    }
 }

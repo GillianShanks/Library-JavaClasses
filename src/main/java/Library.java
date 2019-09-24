@@ -27,4 +27,21 @@ public class Library {
     public boolean hasSpace() {
         return this.stockCount() < this.capacity;
     }
+
+//    public void checkOut(Book book1, Borrower borrower1) {
+//
+//    }
+
+
+
+    public Book removeBook(Book selectedBook) {
+
+        //find Book index
+        int index = this.bookStock.indexOf(selectedBook);
+        //remove book by index
+        if (index>=0) {
+            return this.bookStock.remove(index);
+        }
+        return null;
+    }
 }
