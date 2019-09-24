@@ -118,21 +118,39 @@ public class LibraryTest {
         assertEquals(1, library.stockCount());
     }
 
-//    @Test
-//    public void canCheckOutBook(){
-//        //Given there is a library
-//        assertNotNull(library);
-//        //AND there is a book
-//        assertNotNull(book1);
-//        //AND there is a borrower
-//        assertNotNull(borrower1);
-//        //AND the book is in the library stock
-//        library.addBook(book1);
-//        //When the library checks out the book to a borrower
-//        library.checkOut(book1, borrower1);
-//        //Then the library's stock is 0
-//        assertEquals(0, library.stockCount());
-//        //AND the borrower's borrowed List is 1
-//        assertEquals(1, borrower1.borrowedListSize());
-//    }
+    @Test
+    public void canCheckOutBook__bookExists(){
+        //Given there is a library
+        assertNotNull(library);
+        //AND there is a book
+        assertNotNull(book1);
+        //AND there is a borrower
+        assertNotNull(borrower1);
+        //AND the book is in the library stock
+        library.addBook(book1);
+        //When the library checks out the book to a borrower
+        library.checkOut(book1, borrower1);
+        //Then the library's stock is 0
+        assertEquals(0, library.stockCount());
+        //AND the borrower's borrowed List is 1
+        assertEquals(1, borrower1.borrowedListSize());
+    }
+
+    @Test
+    public void canCheckOutBook__bookDoesNotExist(){
+        //Given there is a library
+        assertNotNull(library);
+        //AND there is a book
+        assertNotNull(book1);
+        //AND there is a borrower
+        assertNotNull(borrower1);
+        //AND a book is in the library stock
+        library.addBook(book1);
+        //When the library tries to checkout a non-existent book to a borrower
+        library.checkOut(book2, borrower1);
+        //Then the library's stock is 1
+        assertEquals(1, library.stockCount());
+        //AND the borrower's borrowed List is 0
+        assertEquals(0, borrower1.borrowedListSize());
+    }
 }

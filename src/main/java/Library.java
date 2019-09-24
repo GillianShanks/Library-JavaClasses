@@ -28,9 +28,16 @@ public class Library {
         return this.stockCount() < this.capacity;
     }
 
-//    public void checkOut(Book book1, Borrower borrower1) {
-//
-//    }
+    public void checkOut(Book book, Borrower borrower) {
+        //if the borrowed book exists and is not null
+        if (this.removeBook(book) != null) {
+            //remove specific book from library
+            Book bookToBorrow = this.removeBook(book);
+            //add book to borrower's list
+            borrower.addBook(bookToBorrow);
+        }
+
+    }
 
 
 
