@@ -8,6 +8,8 @@ public class LibraryTest {
     Library library;
     Book book1;
     Book book2;
+    Book book3;
+    Book book4;
     Borrower borrower1;
 
     @Before
@@ -15,6 +17,9 @@ public class LibraryTest {
         library = new Library(5);
         book1 = new Book("How to Java", "Ally M", "Computing");
         book2 = new Book("How to Java2", "Ally M", "Computing");
+        book3 = new Book("I like Water", "Billy M", "AutoBiography");
+        book4 = new Book("I Sometimes Love Water", "Billy M", "Romance");
+
         borrower1 = new Borrower();
 
     }
@@ -153,4 +158,32 @@ public class LibraryTest {
         //AND the borrower's borrowed List is 0
         assertEquals(0, borrower1.borrowedListSize());
     }
+
+    @Test
+    public void canSeeNumberOfGenresInLibrary_stockEmpty(){
+        //Given there is a library
+        assertNotNull(library);
+        //When
+        //Then the number of genres in the HashMap is 0
+        assertEquals(0, library.genreCollectionCount());
+    }
+
+//    @Test
+//    public void canSeeNumberOfGenresInLibrary(){
+//        //Given there is a library
+//        assertNotNull(library);
+//        //AND there are a books
+//        assertNotNull(book1);
+//        assertNotNull(book2);
+//        assertNotNull(book3);
+//        assertNotNull(book4);
+//        //AND the books are added to the library
+//        library.addBook(book1);
+//        library.addBook(book2);
+//        library.addBook(book3);
+//        library.addBook(book4);
+//        //When
+//        //Then the number of genres in the HashMap is 3
+//        assertEquals(3, library.genreCollectionCount());
+//    }
 }

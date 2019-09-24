@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Library {
 
     private ArrayList<Book> bookStock;
     private int capacity;
+    private HashMap<String, Integer> genreCollection;
 
     public Library(int capacity){
         this.bookStock = new ArrayList<Book>();
         this.capacity = capacity;
+        this.genreCollection = new HashMap<String, Integer>();
     }
 
     public int stockCount() {
@@ -17,6 +20,8 @@ public class Library {
     public void addBook(Book book) {
         if (this.hasSpace()) {
             this.bookStock.add(book);
+//            TODO:
+//            this.addToGenreCollection(book);
         }
     }
 
@@ -33,13 +38,14 @@ public class Library {
         if (this.removeBook(book) != null) {
             //remove specific book from library
             Book bookToBorrow = this.removeBook(book);
+            //update the genreCollection
+//            TODO:
+//            this.removeFromGenreCollection(book);
             //add book to borrower's list
             borrower.addBook(bookToBorrow);
         }
 
     }
-
-
 
     public Book removeBook(Book selectedBook) {
 
@@ -51,4 +57,14 @@ public class Library {
         }
         return null;
     }
+
+    public int genreCollectionCount() {
+        return this.genreCollection.size();
+    }
+
+//    public void addToGenreCollection(Book book) {
+//        //get the genre of the book
+//        //go through the
+//        String genre = book.getGenre();
+//    }
 }
