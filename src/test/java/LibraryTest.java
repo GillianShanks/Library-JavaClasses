@@ -160,7 +160,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void canSeeNumberOfGenresInLibrary_stockEmpty(){
+    public void canSeeNumberOfGenresInLibrary__stockEmpty(){
         //Given there is a library
         assertNotNull(library);
         //When
@@ -168,22 +168,42 @@ public class LibraryTest {
         assertEquals(0, library.genreCollectionCount());
     }
 
-//    @Test
-//    public void canSeeNumberOfGenresInLibrary(){
-//        //Given there is a library
-//        assertNotNull(library);
-//        //AND there are a books
-//        assertNotNull(book1);
-//        assertNotNull(book2);
-//        assertNotNull(book3);
-//        assertNotNull(book4);
-//        //AND the books are added to the library
-//        library.addBook(book1);
-//        library.addBook(book2);
-//        library.addBook(book3);
-//        library.addBook(book4);
-//        //When
-//        //Then the number of genres in the HashMap is 3
-//        assertEquals(3, library.genreCollectionCount());
-//    }
+    @Test
+    public void canSeeNumberOfGenresInLibrary__addsBooks(){
+        //Given there is a library
+        assertNotNull(library);
+        //AND there are a books
+        assertNotNull(book1);
+        assertNotNull(book2);
+        assertNotNull(book3);
+        assertNotNull(book4);
+        //When the books are added to the library
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+        library.addBook(book4);
+        //Then the number of genres in the HashMap is 3
+        assertEquals(3, library.genreCollectionCount());
+    }
+
+    @Test
+    public void canSeeNumberOfGenresInLibrary__addsAndRemovesBooks(){
+        //Given there is a library
+        assertNotNull(library);
+        //AND there are a books
+        assertNotNull(book1);
+        assertNotNull(book2);
+        assertNotNull(book3);
+        assertNotNull(book4);
+        //AND the books are added to the library
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+        library.addBook(book4);
+        //When books are removed from the library
+        library.removeBook(book2);
+        library.removeBook(book4);
+        //Then the number of genres in the HashMap is 2
+        assertEquals(2, library.genreCollectionCount());
+    }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Library {
 
@@ -20,8 +21,7 @@ public class Library {
     public void addBook(Book book) {
         if (this.hasSpace()) {
             this.bookStock.add(book);
-//            TODO:
-//            this.addToGenreCollection(book);
+            this.addToGenreCollection(book);
         }
     }
 
@@ -62,9 +62,18 @@ public class Library {
         return this.genreCollection.size();
     }
 
-//    public void addToGenreCollection(Book book) {
-//        //get the genre of the book
-//        //go through the
-//        String genre = book.getGenre();
-//    }
+    public void addToGenreCollection(Book book) {
+        //get the genre of the book
+        String bookGenre = book.getGenre();
+        //if the genre is present +1 to the count
+        if (this.genreCollection.containsKey(bookGenre)) {
+            int count = this.genreCollection.get(bookGenre);
+            this.genreCollection.put(bookGenre, count+1);
+        } else {
+            //if the genre is not present make new key/value of 1
+            this.genreCollection.put(bookGenre, 1);
+        }
+
+
+    }
 }
