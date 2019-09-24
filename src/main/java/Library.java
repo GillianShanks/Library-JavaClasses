@@ -38,9 +38,6 @@ public class Library {
         if (this.removeBook(book) != null) {
             //remove specific book from library
             Book bookToBorrow = this.removeBook(book);
-            //update the genreCollection
-//            TODO:
-//            this.removeFromGenreCollection(book);
             //add book to borrower's list
             borrower.addBook(bookToBorrow);
         }
@@ -53,6 +50,8 @@ public class Library {
         int index = this.bookStock.indexOf(selectedBook);
         //remove book by index
         if (index>=0) {
+            //update the genreCollection
+            this.removeFromGenreCollection(selectedBook);
             return this.bookStock.remove(index);
         }
         return null;
@@ -73,7 +72,17 @@ public class Library {
             //if the genre is not present make new key/value of 1
             this.genreCollection.put(bookGenre, 1);
         }
+    }
 
+    public void removeFromGenreCollection(Book book){
+        String bookGenre = book.getGenre();
+
+        int count = this.genreCollection.get(bookGenre);
+        if (count > 1) {
+            this.genreCollection.put(bookGenre, count-1);
+        } else {
+            this.genreCollection.remove(bookGenre);
+        }
 
     }
 }
